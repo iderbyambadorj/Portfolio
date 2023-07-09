@@ -1,0 +1,16 @@
+# Canvas Group name
+Group 149 
+# Authors: 	Charlie Davis-Tope
+		Ider Byambadorj
+		Jayaram Annadurai
+		Himmat Singh Sandha
+
+# Instructions on how to run your code.
+Three Jupyter notebook files, that use Python, 
+called EU_machineleaning_model, KR_machineleaning_model, NA_machineleaning_model are included.
+
+Select "Run all" in each one indvidually to observe each region's model.
+Each file contains instructions on how the code runs.
+
+
+

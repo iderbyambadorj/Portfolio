@@ -1,0 +1,36 @@
+#############################################
+League of Legends Challenger data
+#############################################
+
+From the kaggle source Description:
+
+I acquired the data in this project from League of Legends Challenger matches from 3 servers: NA, EUW, KR from January 2022. I gathered all challenger players' match history in January and went through each game to collect my data. To ensure independence, I made sure I only collected one (randomly chosen) player from each game in each match history, and made sure that the game ID was never used twice in the data set.
+
+Andrew Suter, “LoL Challenger Soloq Data (Jan, Kr-Na-Euw).” Kaggle, 2022, doi: 10.34740/KAGGLE/DSV/3193532.
+
+https://www.kaggle.com/datasets/andrewasuter/lol-challenger-soloq-data-jan-krnaeuw
+
+Note: The data has been modified to suit the assessment criteria.
+
+| Feature           | Description                       |
+|-------------------|-----------------------------------|
+| d_spell           | summoner spell on d key           |
+| f_spell           | summoner spell on f key           |
+| champion          | champion being played             |
+| side              | side of map player is on red/blue |
+| role              | role being played out of the 5    |
+| assists           | number of assists in match        |
+| damage_objectives | damage to objectives              |
+| damage_building   | damage to buildings               |
+| damage_turrets    | damage to turrets                 |
+| deaths            | deaths in game                    |
+| gold_earned       | gold earned in game               |
+| kda               | k/d/a ratio in game               |
+| kills             | kills in game                     |
+| level             | level in game                     |
+| time_cc           | time crowd controlling others     |
+| damage_total      | total damage in game              |
+| damage_taken      | total damage taken in game        |
+| minions_killed    | total minions killed in game      |
+| turret_kills      | turret kills in game              |
+| vision_score      | vision score in game              |
