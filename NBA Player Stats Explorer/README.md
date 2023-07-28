@@ -12,4 +12,10 @@ streamlit run nbaplayerstats.py
 
 ## Demo
 After running the program, the following page will appear:
-<img src=>
+<img src="https://github.com/iderbyambadorj/Portfolio/blob/main/NBA%20Player%20Stats%20Explorer/image/full.png">
+Heatmap:
+<img src="https://github.com/iderbyambadorj/Portfolio/blob/main/NBA%20Player%20Stats%20Explorer/image/heatmap.png">
+
+## Exploratory Analysis
+- You can choose the year in the sidebar to explore player stats in a particular year.
+- Choose teams and positions to filter the players' data.
