@@ -11,3 +11,5 @@ To run the program, run the following command in the terminal:
 streamlit run nbaplayerstats.py
 
 ## Demo
+After running the program, the following page will appear:
+<img src=>
