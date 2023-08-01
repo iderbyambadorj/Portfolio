@@ -3,8 +3,6 @@ import bagel.*;
 /**
  * Skeleton Code for SWEN20003 Project 2, Semester 1, 2022
  *
- * Sample solution of Project 1 is used and modified.
- * Credit of solution goes to Tharun Dharmawickrema.
  *
  * @author Ider Byambadorj
  */
