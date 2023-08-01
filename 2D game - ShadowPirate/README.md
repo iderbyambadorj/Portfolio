@@ -17,3 +17,17 @@ contain all the relevant information about the levels.
 
 ### Run
 
+![Start image](https://github.com/iderbyambadorj/Portfolio/blob/main/2D%20game%20-%20ShadowPirate/image/start.png)
+
+Level 0:
+![Level 0](https://github.com/iderbyambadorj/Portfolio/blob/main/2D%20game%20-%20ShadowPirate/image/level0.png)
+
+Level 1:
+![Level 1](https://github.com/iderbyambadorj/Portfolio/blob/main/2D%20game%20-%20ShadowPirate/image/level1.png)
+
+
+
+### Disclaimer
+The above project is for informational purpose only. Copying any part of the code
+is not allowed, especially for academic purposes. Such act will be considered as 
+plagiarism. 
