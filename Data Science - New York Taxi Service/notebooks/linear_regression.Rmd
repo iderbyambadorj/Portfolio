@@ -1,0 +1,150 @@
+---
+title: "Project 1"
+author: "Ider Byambadorj"
+date: "2023-08-17"
+output: word_document
+---
+
+```{r}
+data = read.csv('../data/curated/pickup.csv')
+
+data$pulocationid=factor(data$pulocationid)
+data$pickup_dayofweek = factor(data$pickup_dayofweek)
+data$pickup_hour = factor(data$pickup_hour)
+data$season = factor(data$season)
+data$borough = factor(data$borough)
+data$Shape_Area = 1000 * data$Shape_Area
+
+test = data[data$year==2023,]
+data = data[data$year==2022,]
+
+queens_test = test[test$borough=='Queens',]
+bronx_test = test[test$borough=='Bronx',]
+brooklyn_test = test[test$borough=='Brooklyn',]
+manhattan_test = test[test$borough=='Manhattan',]
+staten_island_test = test[test$borough=='Staten Island',]
+airport_test = test[test$borough=='Airport',]
+```
+
+First, we fit a linear model to see how they fit to the data.
+
+```{r}
+linearmodel = lm(pickup_count ~ pulocationid + pickup_hour + pickup_dayofweek + 
+              season + num_stops + Shape_Area + borough, data=data)
+plot(linearmodel)
+```
+
+From the diagnostic plots, we see signs of multiplicative errors, which indicates
+heteroskedasticity or non-linear relationship in this case. Linear-linear model
+is not a good choice in our model. Next, we fit a log-linear model.
+
+
+```{r}
+logmodel = lm(log(pickup_count) ~ pulocationid + pickup_hour + pickup_dayofweek + 
+              season + num_stops + Shape_Area + borough, data=data)
+plot(logmodel)
+```
+The plot looks better now. From here on, we choose log-linear as our model. 
+However, from the plot, we can see that there are points with unusually 
+large cook's distances. These points can affect the model greatly and increase
+the residuals. Therefore, we need to remove these points first.
+
+```{r}
+n <- nrow(data)
+cooksD <- cooks.distance(logmodel)
+#identify influential points
+influential_obs <- as.numeric(names(cooksD)[(cooksD > (4/n))])
+#define new data frame with influential points removed
+clean_data <- data[-influential_obs, ]
+cat("Total of ", length(influential_obs), "data points were removed")
+```
+
+
+Next, we fit different models for each borough in the city. 
+
+```{r}
+queens_data = clean_data[clean_data$borough=='Queens',]
+bronx_data = clean_data[clean_data$borough=='Bronx',]
+brooklyn_data = clean_data[clean_data$borough=='Brooklyn',]
+manhattan_data = clean_data[clean_data$borough=='Manhattan',]
+staten_island_data = clean_data[clean_data$borough=='Staten Island',]
+airport_data = clean_data[clean_data$borough=='Airport',]
+
+cat("Number of instances for Queens: ", nrow(queens_data), "\n")
+cat("Number of instances for Bronx: ", nrow(bronx_data), "\n")
+cat("Number of instances for Brooklyn: ", nrow(brooklyn_data), "\n")
+cat("Number of instances for Manhattan: ", nrow(manhattan_data), "\n")
+cat("Number of instances for Staten Island: ", nrow(staten_island_data), "\n")
+cat("Number of instances for Airport: ", nrow(airport_data))
+```
+
+```{r}
+log_queens = lm(log(pickup_count) ~ pulocationid + pickup_hour + pickup_dayofweek + 
+              season + num_stops + Shape_Area, data=queens_data)
+log_bronx = lm(log(pickup_count) ~ pulocationid + pickup_hour + pickup_dayofweek + 
+              season + num_stops + Shape_Area, data=bronx_data)
+log_brooklyn = lm(log(pickup_count) ~ pulocationid + pickup_hour + pickup_dayofweek + 
+              season + num_stops + Shape_Area, data=brooklyn_data)
+log_manhattan = lm(log(pickup_count) ~ pulocationid + pickup_hour + pickup_dayofweek + 
+              season + num_stops + Shape_Area, data=manhattan_data)
+log_staten_island = lm(log(pickup_count) ~ pulocationid + pickup_hour + pickup_dayofweek + 
+              season + num_stops + Shape_Area, data=staten_island_data)
+log_airport = lm(log(pickup_count) ~ pulocationid + pickup_hour + pickup_dayofweek + 
+              season + num_stops + Shape_Area, data=airport_data)
+
+cat("R-Squared for Queens: ", summary(log_queens)$r.squared, "\n")
+cat("R-Squared for Bronx: ", summary(log_bronx)$r.squared, "\n")
+cat("R-Squared for Brooklyn: ", summary(log_brooklyn)$r.squared, "\n")
+cat("R-Squared for Manhattan: ", summary(log_manhattan)$r.squared, "\n")
+cat("R-Squared for Staten Island: ", summary(log_staten_island)$r.squared, "\n")
+cat("R-Squared for Airport: ", summary(log_airport)$r.squared, "\n")
+```
+
+
+```{r}
+# Prediction for Queens
+fitted = exp(predict(log_queens, queens_test))
+abs_residuals <- abs(queens_test$pickup_count - fitted)
+# Calculate MAE
+cat("MAE for Queens Prediction: ", mean(abs_residuals))
+
+# Prediction for Bronx
+fitted = exp(predict(log_bronx, bronx_test))
+abs_residuals <- abs(bronx_test$pickup_count - fitted)
+# Calculate MAE
+cat("MAE for Bronx Prediction: ", mean(abs_residuals))
+
+# Prediction for Brooklyn
+fitted = exp(predict(log_brooklyn, brooklyn_test))
+abs_residuals <- abs(brooklyn_test$pickup_count - fitted)
+# Calculate MAE
+cat("MAE for Brooklyn Prediction: ", mean(abs_residuals))
+
+# Prediction for Manhattan
+fitted = exp(predict(log_manhattan, manhattan_test))
+abs_residuals <- abs(manhattan_test$pickup_count - fitted)
+# Calculate MAE
+cat("MAE for Manhattan Prediction: ", mean(abs_residuals))
+
+# Prediction for Staten Island
+fitted = exp(predict(log_staten_island, staten_island_test))
+abs_residuals <- abs(staten_island_test$pickup_count - fitted)
+# Calculate MAE
+cat("MAE for Staten Island Prediction: ", mean(abs_residuals))
+
+# Prediction for Airport
+fitted = exp(predict(log_airport, airport_test))
+abs_residuals <- abs(airport_test$pickup_count - fitted)
+# Calculate MAE
+cat("MAE for Airport Prediction: ", mean(abs_residuals))
+```
+
+```{r}
+# 5 highest coefficients for Queens log-model
+(tail(sort(log_queens$coefficients), 5))
+# 5 lowest coefficients for Queens log-model
+(head(sort(log_queens$coefficients), 5))
+```
+
+
+
