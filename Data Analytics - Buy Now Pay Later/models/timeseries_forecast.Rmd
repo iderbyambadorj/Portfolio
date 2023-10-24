@@ -1,0 +1,193 @@
+---
+title: "Forecasting monthly revenue of merchants"
+author: "Tugsgerel"
+date: "2023-09-20"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Setting working directory and read in the data (have to set wd to the file
+location)
+
+```{r}
+# install packages and load
+install.packages("forecast")
+install.packages("lubridate")
+install.packages("ggplot2")
+
+library(forecast)
+library(lubridate)
+library(ggplot2)
+
+# IMPORTANT: change the following line to the current file location before running the code
+wd = "working-directory"
+```
+
+```{r}
+# function for fitting an ARIMA model for the given time series on first 17 
+# months, and predicting on the next 3 months with given data. Then RMSE is 
+# calculated and returned
+get_arima_rmse = function(ts_data) {
+    tot_sq = 0
+    
+    for (i in 1:n) {
+        # transform into TS data
+        data = stack(ts_data[i,])
+        data = data[-1,] # drop ABN
+        colnames(data) = c("x", "date")
+        data = ts(data$x, start=c(2021, 3), end=c(2022, 10), freq=12)
+        
+        
+        # split train test set
+        train = window(data, end = c(2022, 7))
+        test = window(data, start = c(2022, 8))
+        
+        # fit ARIMA on the time series
+        best = auto.arima(train, ic = "aicc",
+                          seasonal = TRUE, trace = FALSE,
+                          stepwise = FALSE, approximation = FALSE, 
+                          max.p=2, max.q=2, D=1)
+        
+        # Calculate RMSE
+        fcast = forecast(best, h=3)
+        tot_sq = tot_sq + sum((fcast$mean - test)^2)
+    }
+    
+    # average RMSE
+    return(sqrt(tot_sq / (n * 3)))
+}
+```
+
+For baseline, linear regression is fitted for each merchant on the same training set. The monthly data is regressed on date (which is transformed into 1->21 integers).
+
+```{r}
+
+# fits linear model on given multiple time series and returns rmse of prediction
+# on last 3 months
+get_lm_rmse = function(ts_data) {
+    lm_sq = 0
+    
+    for (i in 1:n) {
+        # set up the dataset
+        data = stack(ts_data[i,])
+        data = data[-1,] # drop ABN
+        colnames(data) = c("x", "date")
+        data$date = c(1:21)
+        
+        # fit lm and get predictions
+        model = lm(x~date, data=data[2:18,])
+        new_d = data.frame(date=c(19, 20, 21))
+        lm_sq = lm_sq + sum((predict.lm(model, newdata=new_d) - 
+                                           data$x[19:21])^2)
+    }
+    
+    # average RMSE of lm
+    return(sqrt(lm_sq / (n * 3)))
+}
+```
+
+Read in the data and transform
+
+```{r}
+# set working directory
+setwd(wd)
+user_count = read.csv("../data/curated/user_count_ts.csv")
+rev_ts = read.csv("../data/curated/monthly_rev_ts.csv")
+trans_count_ts = read.csv("../data/curated/trans_count_ts.csv")
+n = nrow(user_count)
+```
+
+
+Get the normalized RMSEs and plot the result
+
+```{r}
+# calculating mean values which will be used for normalizing RMSEs
+mean_usr_cnt = sum(user_count[,-1]) / n
+mean_trans_cnt = sum(trans_count_ts[,-1]) / n
+mean_rev = sum(rev_ts[,-1]) / n
+means = c(mean_usr_cnt, mean_rev, mean_trans_cnt)
+
+# calculate normalized RMSEs for the 2 models
+arima_errors = c(get_arima_rmse(user_count), get_arima_rmse(rev_ts), 
+                 get_arima_rmse(trans_count_ts)) / means
+lm_errors = c(get_lm_rmse(user_count), get_lm_rmse(rev_ts),
+              get_lm_rmse(trans_count_ts)) / means
+errors = c(arima_errors, lm_errors)
+
+# preparing data frame for bar plot
+model_names = c(rep("ARIMA", 3), rep("LM", 3))
+tasks = rep(c("User count", "Revenue", "Transaction count"), 2)
+total_data = data.frame(model_names, tasks, errors)
+
+# plot the result
+ggplot(total_data, aes(fill=model_names, y=errors, x=tasks)) + 
+    geom_bar(position="dodge", stat="identity") +
+    xlab("Prediction Task") + 
+    ylab("Normalized RMSE") + 
+    labs(title="Normalized RMSE of ARIMA and LM models", fill="Model") +     
+    theme(plot.title = element_text(hjust = 0.5), 
+          axis.text = element_text(size=14),
+          axis.title = element_text(size=14))
+ggsave("../plots/arima_perf.png")
+```
+
+## Getting predictions
+
+As the ARIMA model performs better in all 3 tasks, total amount in the next 
+2 months are predicted
+
+```{r}
+
+# function that fits an ARIMA model on given multiple time series and returns 
+# prediction on following 2 months
+get_predictions = function(ts_data) {
+    predictions = c()
+    
+    for (i in 1:n) {
+        # transform into TS data
+        data = stack(ts_data[i,])
+        abn = data[1, 1]
+        data = data[-1,]
+        colnames(data) = c("x", "date")
+        x_ts = ts(data$x, start=c(2021, 1), end=c(2022, 10), freq=12)
+        
+        # fit ARIMA
+        best = auto.arima(x_ts, ic = "aicc",
+                          seasonal = TRUE, trace = FALSE,
+                          stepwise = FALSE, approximation = FALSE,
+                          max.p = 2, max.q = 2, D = 1)
+        
+        # Calculate RMSE
+        fcast = forecast(best, h=2)
+        predictions = rbind(predictions, c(abn, 2022, 11, fcast$mean[1]))
+        predictions = rbind(predictions, c(abn, 2022, 12, fcast$mean[2]))
+    }
+    
+    return(predictions)
+}
+```
+
+Get all the predictions
+
+```{r}
+usr_pred = get_predictions(user_count)
+trans_pred = get_predictions(trans_count_ts)
+rev_pred = get_predictions(rev_ts)
+usr_count_pred = data.frame(merchant_abn=usr_pred[,1], year=usr_pred[,2], month=usr_pred[,3],
+                            total_num_consumer=usr_pred[,4])
+trans_count_pred = data.frame(merchant_abn=trans_pred[,1], year=trans_pred[,2], 
+                              month=trans_pred[,3], total_num_trans=trans_pred[,4])
+rev_pred = data.frame(merchant_abn=rev_pred[,1], year=rev_pred[,2], month=rev_pred[,3],
+                            total_revenue=rev_pred[,4])
+```
+
+Finally, merge all predictions and write into a file
+
+```{r}
+all_pred = merge(rev_pred, usr_count_pred, on=c("merchant_abn", "year", "month"))
+all_pred = merge(all_pred, trans_count_pred, on=c("merchant_abn", "year", "month"))
+write.csv(all_pred, "../data/curated/time_series_forecast.csv", row.names=FALSE)
+```
