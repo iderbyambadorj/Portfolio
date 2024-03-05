@@ -9,6 +9,7 @@ pip install streamlit pandas matplotlib seaborn numpy
 ## Instructions on how to run the program
 To run the program, run the following command in the terminal:
 streamlit run nbaplayerstats.py
+(Alternative: python -m streamlit run nbaplayerstats.py)
 
 ## Demo
 After running the program, the following page will appear:
