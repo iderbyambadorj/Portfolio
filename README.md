@@ -4,11 +4,11 @@ Welcome to my data analyst portfolio! This repository showcases a collection of 
 
 ## Projects
 
-### 🚴 Cyclists
-- **Description**: Analyzed customer data to segment them based on purchasing behavior.
-- **Dataset Source**: Kaggle (link to dataset)
-- **Tools Used**: Python, pandas, scikit-learn, R, SQL, Tableau
-- **Insights Gained**: Identified distinct customer segments for targeted marketing campaigns.
+### 🚴 [Cyclistic](https://github.com/iderbyambadorj/Portfolio/tree/main/Cyclistic)
+- **Description**: Analyzed customer data to understand their behaviour and perform market analysis.
+- **Dataset Source**: [Divvy Bicycle Sharing Service data](https://divvy-tripdata.s3.amazonaws.com/index.html)
+- **Tools Used**: SQL, Tableau
+- **Insights Gained**: Identified key differences between casual and member customers for a bike-sharing service company located in Chicago. 
 
 ### 📊 [Buy Now Pay Later](https://github.com/iderbyambadorj/Portfolio/tree/main/Data%20Analytics%20-%20Buy%20Now%20Pay%20Later)
 - **Description**: Developed a ranking system to help drive data-driven decisions.
@@ -18,10 +18,10 @@ Welcome to my data analyst portfolio! This repository showcases a collection of 
 
 ### 🚕 [Predicting Yellow Taxi Demand with Public Transport in New York City: Urban Mobility Insights](https://github.com/iderbyambadorj/Portfolio/tree/main/Data%20Science%20-%20New%20York%20Taxi%20Service)
 
-- **Description**: 
-- **Dataset Source**: 
+- **Description**: Analyzed a spatial and temporal relationship between public transport and yellow taxi demands in New York.
+- **Dataset Source**: [TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page), [Metropolitan Transportation Authority Data](http://web.mta.info/developers/developer-data-terms.html##data)
 - **Tools Used**: Python, pandas, PySpark, matplotlib, seaborn, folium, R, scikit-learn
-- **Insights Gained**: 
+- **Insights Gained**: According to the result, public transport data, combined with temporal data, can be used to predict yellow taxi demand with high performance. The predictive power of the models not only provided accurate estimations of taxi demand but also highlighted the influence of public transportation services on commuting patterns. This study’s findings can help public transport planners and taxi companies to better allocate their resources.
 
 ### Other Projects:
 - **[Music Genre](https://github.com/iderbyambadorj/Portfolio/tree/main/Classification%20-%20Music%20Genre)**: ML Classification project implementing Naive Bayes algorithm to predict the music genre of a song. (Data Wrangling, Scikit-learn, Python)
@@ -37,12 +37,13 @@ Welcome to my data analyst portfolio! This repository showcases a collection of 
 
 ## 👨‍🎓 About Me
 
-I am a passionate data analyst with a strong background in statistics and programming. I specialize in extracting meaningful insights from data to drive business decisions and improve processes. My expertise includes data manipulation, visualization, statistical analysis, and machine learning.
+I am a passionate data analyst with a strong background in statistics and programming. I specialize in extracting meaningful insights from data to drive business decisions and improve processes. My expertise includes data manipulation, visualization, statistical analysis, and machine learning. 
 
 ## 📞 Contact
 
 - **Email**: [ider.byambadorj@gmail.com](mailto:ider.byambadorj@gmail.com)
 - **LinkedIn**: [LinkedIn Profile](https://www.linkedin.com/in/iderbyambadorj)
 - **GitHub**: [Github Profile](https://github.com/iderbyambadorj)
+- **Tableau**: [Tableau Public Profile](https://public.tableau.com/app/profile/ider.byambadorj/vizzes)
 
 Feel free to explore the projects and reach out to me for any inquiries or collaborations!
