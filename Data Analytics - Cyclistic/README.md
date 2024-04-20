@@ -351,7 +351,13 @@ Key tasks
 
 We chose Tableau for data visualization primarily due to its robust capabilities in creating a diverse range of visualizations, from basic charts to complex dashboards, which effectively communicate insights from our data. Tableau's flexibility allows us to tailor visualizations to specific stakeholder needs, ensuring that the information presented is relevant and impactful. Additionally, its seamless integration with various data sources ensures that we can leverage our existing datasets efficiently, minimizing additional data preparation efforts. Furthermore, Tableau's sharing and collaboration features facilitate easy dissemination of insights across stakeholders, fostering data-driven decision-making and enhancing overall transparency and alignment within the organization.
 
-INSERT Tableau link here
+[Go to Dashboard in Tableau Public](https://public.tableau.com/app/profile/ider.byambadorj/viz/Cyclistic_17132658629150/Main)
+
+
+**Dashboard preview**:
+
+![Dashboard 1](https://github.com/iderbyambadorj/Portfolio/blob/main/Data%20Analytics%20-%20Cyclistic/media/Dashboard%201.png)
+![Dashboard 2](https://github.com/iderbyambadorj/Portfolio/blob/main/Data%20Analytics%20-%20Cyclistic/media/Dashboard%202.png)
 
 ## Results and Recommendations
 <!-- - What is your final conclusion based on your analysis?
