@@ -351,8 +351,7 @@ Key tasks
 
 We chose Tableau for data visualization primarily due to its robust capabilities in creating a diverse range of visualizations, from basic charts to complex dashboards, which effectively communicate insights from our data. Tableau's flexibility allows us to tailor visualizations to specific stakeholder needs, ensuring that the information presented is relevant and impactful. Additionally, its seamless integration with various data sources ensures that we can leverage our existing datasets efficiently, minimizing additional data preparation efforts. Furthermore, Tableau's sharing and collaboration features facilitate easy dissemination of insights across stakeholders, fostering data-driven decision-making and enhancing overall transparency and alignment within the organization.
 
-INSERT Dashboard image here
-INSERT viz link here
+INSERT Tableau link here
 
 ## Results and Recommendations
 <!-- - What is your final conclusion based on your analysis?
@@ -360,10 +359,19 @@ INSERT viz link here
 - What next steps would you or your stakeholders take based on your findings?
 - Is there additional data you could use to expand on your findings? -->
 
-Insert Dashboard 2 image here
-
 ### Insights
-Write results here
+1. A significant portion of trips, 64.8%, are attributed to members, with casual users making up the remaining 35.2%.
+2. Among members, traditional bikes account for two-thirds of trips, while electric bikes make up the remaining third.
+3. Summer emerges as the favored season for both member and casual riders.
+4. August sees the highest activity for members, whereas casual riders peak in July.
+5. Casual riders tend to embark on lengthier bike rides compared to members.
+6. The preferred start and end point for members is Streeter Dr & Grand Ave, boasting approximately 60,000 trips over the past year.
+7. Weekdays witness a surge in trips during rush hours, namely 7-9 am and 4-6 pm.
+8. Trips on weekends are more evenly distributed throughout the day.
+9. Both casual riders and members opt for longer bike rides on weekends.
 
 ### Recommendations
-Write recommendations here
+1. **Summer Membership Promotion**: We recommend launching a summer membership promotion aimed at casual riders. This initiative will highlight the advantages of membership during the peak biking season, with a focus on the convenience and cost-effectiveness it offers. Special emphasis will be placed on access to electric bikes and priority station availability to encourage conversion.
+2. **Weekend Exclusive Offers**: Develop targeted promotional offers specifically for weekends to attract casual riders to become members. These offers will leverage the observed trend of increased biking activity during weekends, offering discounts or incentives tailored to this time frame. By tapping into this behavior, we aim to drive membership sign-ups among casual riders.
+3. **Weekday Engagement Strategy**: Implement weekday engagement campaigns to promote membership benefits during rush hours. These campaigns will highlight advantages such as quicker access to bikes and priority parking at popular stations, particularly appealing to commuters. Utilizing data-driven insights, we will identify key commuter routes and tailor our messaging accordingly to encourage weekday membership conversions.
+4. **Community Building Initiatives**: Launch community events and group rides tailored to casual riders, showcasing the benefits of membership while fostering a sense of community within the biking enthusiast circles. Collaborating with local organizations or businesses, these initiatives will offer exclusive membership incentives to event participants, driving interest and conversion.
