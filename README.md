@@ -4,7 +4,7 @@ Welcome to my data analyst portfolio! This repository showcases a collection of 
 
 ## Projects
 
-### 🚴 [Cyclistic](https://github.com/iderbyambadorj/Portfolio/tree/main/Cyclistic)
+### 🚴 [Cyclistic](https://github.com/iderbyambadorj/Portfolio/tree/main/Data%20Analytics%20-%20Cyclistic)
 - **Description**: Analyzed customer data to understand their behaviour and perform market analysis.
 - **Dataset Source**: [Divvy Bicycle Sharing Service data](https://divvy-tripdata.s3.amazonaws.com/index.html)
 - **Tools Used**: SQL, Tableau
