@@ -4,6 +4,12 @@ Welcome to my data analyst portfolio! This repository showcases a collection of 
 
 ## Projects
 
+### 🕵️ [Person Re-Identification - Siamese Network](https://github.com/iderbyambadorj/Portfolio/tree/main/Deep%20Learning%20-%20Siamese%20Network)
+- **Description**: Trained a Siamese network for person re-identification purposes
+- **Dataset Source**: [Market-1501 Dataset](https://www.kaggle.com/pengcw1/market-1501)
+- **Tools Used**: Python, pandas, PyTorch
+- **Insights Gained**: By leveraging a ResNet-based architecture and optimizing with triplet margin loss, we achieved accurate separation of anchor, positive, and negative image pairs. Data augmentation and deeper network architectures significantly enhanced the model's performance. The use of Euclidean distance effectively identified similar images, demonstrating the practical application of our approach. This project not only showcased the power of deep learning in person re-identification but also provided valuable insights into the impact of model design and optimization techniques.
+
 ### 🚴 [Cyclistic](https://github.com/iderbyambadorj/Portfolio/tree/main/Data%20Analytics%20-%20Cyclistic)
 - **Description**: Analyzed customer data to understand their behaviour and perform market analysis.
 - **Dataset Source**: [Divvy Bicycle Sharing Service data](https://divvy-tripdata.s3.amazonaws.com/index.html)
