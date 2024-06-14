@@ -1,0 +1,4 @@
+pandas
+torch
+timm
+segmentation-models-pytorch
