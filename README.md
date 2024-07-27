@@ -1,8 +1,14 @@
 # Portfolio
 
-Welcome to my data analyst portfolio! This repository showcases a collection of projects and analyses I have worked on to demonstrate my skills and experience in data analysis. Each project comes with a brief description, dataset source, tools used, and insights gained.
+Welcome to my data scientist portfolio! This repository showcases a collection of projects and analyses I have worked on to demonstrate my skills and experience in deep learning, data analysis and data engineering. Each project comes with a brief description, dataset source, tools used, and insights gained.
 
 ## Projects
+
+### 🚗 [Traffic Network Speed Prediction](https://github.com/iderbyambadorj/Portfolio/tree/main/Deep%20Learning%20-%20U-Net%20Model)
+- **Description**: Implemented a U-Net network from scratch using tensorflow and keras.
+- **Dataset**: The dataset consists of multiple images showing traffic speed at various time intervals, and the goal is to predict future traffic speed maps.
+- **Tools Used**: Python, Tensorflow, Keras, OpenCV
+- **Insights Gained**: The model is trained using Binary Cross Entropy loss with masked pixels, meaning that only the relevant pixels (non-zero) contribute to the loss calculation. The model was trained on AWS Sagemaker using ml.m7i.2xlarge instance. The dataset was first stored on S3 bucket then downloaded using boto3 function included in the notebook. The model achieved a validation accuracy of 0.96 and a validation loss of 0.012.
 
 ### 🕵️ [Person Re-Identification - Siamese Network](https://github.com/iderbyambadorj/Portfolio/tree/main/Deep%20Learning%20-%20Siamese%20Network)
 - **Description**: Trained a Siamese network for person re-identification purposes
